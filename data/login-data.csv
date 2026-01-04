@@ -1,0 +1,5 @@
+username,password,expected_result,description
+Admin,admin123,success,Login thành công
+wronguser,wrongpass,fail,Login thất bại với sai username và password
+,admin123,fail,Login thất bại với để trống username
+Admin,,fail,Login thất bại với để trống password
