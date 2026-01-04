@@ -11,7 +11,9 @@
     "test:example": "playwright test example",
     "test:report": "playwright show-report",
     "test:login": "playwright test login --project=chromium --headed",
-    "test:login-data": "playwright test tests/login-data.spec.ts --project=chromium --headed"
+    "test:login-data": "playwright test tests/login-data.spec.ts --project=chromium --headed",
+    "test:home": "playwright test home --project=firefox --headed",
+    "test:my-info": "playwright test myinfo --project=chromium --headed"
   },
   "repository": {
     "type": "git",

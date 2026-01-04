@@ -1,4 +1,4 @@
-import {Page, Locator} from '@playwright/test'
+import { Page, Locator } from '@playwright/test'
 
 export class LoginPage {
     // locator
@@ -6,7 +6,7 @@ export class LoginPage {
     readonly usernameInput: Locator
     readonly passwordInput: Locator
     readonly loginButton: Locator
-     // verify login thành công
+    // verify login thành công
 
     // function: login, validate
     constructor(page: Page) { // hàm khởi tạo
@@ -18,8 +18,20 @@ export class LoginPage {
     }
 
     async login(username: string, password: string): Promise<void> {
+        // đợi vài giây để load trang - networkidle
+        // await this.page.waitForLoadState('networkidle')
         // B1: navigate vào web page login
-        await this.page.goto("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login")
+        // await this.page.goto("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login")
+        await this.page.goto("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login",
+            {
+                waitUntil: 'domcontentloaded',
+                timeout: 30000
+            }
+        )
+
+        // đợi đến khi các input xuất hiện
+        await this.usernameInput.waitFor({timeout: 10000})
+
         // B2: fill username vào input
         await this.usernameInput.fill(username)
 
@@ -32,7 +44,13 @@ export class LoginPage {
 
     async isLoginSuccessfull(): Promise<boolean> {
         // case 1: test URL có chữ dashboard
-        let url = this.page.url();
-        return url.includes("dashboard")
+        // let url = this.page.url();
+        // return url.includes("dashboard")
+        try {
+            await this.page.waitForURL(/.*dashboard/, { timeout: 3000 });
+            return true;
+        } catch (e) {
+            return false;
+        }
     }
 }

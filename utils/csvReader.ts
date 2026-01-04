@@ -5,6 +5,7 @@
 import { readFile } from 'fs/promises';
 import {join} from 'path'
 import {parse} from 'csv-parse/sync';
+import { readFileSync } from 'fs';
 
 // định nghĩa dữ liệu có trong file csv
 export interface LoginData {
@@ -14,14 +15,14 @@ export interface LoginData {
     description: string;
 }
 
-export const readFileFromCsv = async (): Promise<LoginData[]> => {
+export const readFileFromCsv = (): LoginData[] => {
     // B1: xác định đường dẫn tới file csv
     // ../data/login-data.csv
     // __dirname: xác định path của file hiện tại (csvReader.ts)
     const csvPath = join(__dirname, '..', 'data', 'login-data.csv')
 
     // B2: đọc file
-    const fileContent = await readFile(csvPath)
+    const fileContent = readFileSync(csvPath)
 
     // B3: parse data string => list LoginData
     const data = parse(fileContent, {
