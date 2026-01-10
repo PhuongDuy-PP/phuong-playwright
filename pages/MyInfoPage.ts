@@ -35,7 +35,7 @@ export class MyInfoPage {
 
         // chọn hình và upload hình
         await this.fileInput.waitFor({state: 'attached', timeout: 10000})
-        
+
         const filePath = join(__dirname, "..", "data", "testing09.png")
         await this.fileInput.setInputFiles(filePath)
         await this.page.waitForTimeout(5000)
