@@ -16,7 +16,7 @@
     "test:home": "playwright test home --project=firefox --headed",
     "test:my-info": "playwright test myinfo --project=chromium --headed",
     "test:mobile": "playwright test tests/mobile.spec.ts --project=chromium --headed",
-    "test:get-by-role": "playwright test getByRole --project=chromium --headed"
+    "test:get-by-role": "playwright test getByRole --project=chromium"
   },
   "repository": {
     "type": "git",
