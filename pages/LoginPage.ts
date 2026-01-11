@@ -1,4 +1,5 @@
 import { Page, Locator } from '@playwright/test'
+import { hightLightAndScreenshot } from '../utils/screenshot';
 
 export class LoginPage {
     // locator
@@ -34,11 +35,14 @@ export class LoginPage {
 
         // B2: fill username vào input
         await this.usernameInput.fill(username)
+        await hightLightAndScreenshot(this.page, this.usernameInput, 'loginTest', 'fill_username')
 
         // B3: fill password vào input
         await this.passwordInput.fill(password)
+        await hightLightAndScreenshot(this.page, this.passwordInput, 'loginTest', 'fill_password')
 
         // B4: enter nút login
+        await hightLightAndScreenshot(this.page, this.loginButton, 'loginTest', 'click_login_btn')
         await this.loginButton.click()
     }
 
